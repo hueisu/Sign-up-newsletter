@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <title>
+      Frontend Mentor | Newsletter sign-up form with success message
+    </title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main>
+      <div class="subscription-card">
+        <div class="content-wrapper">
+          <h1 class="content-title">Stay updated!</h1>
+          <p>Join 60,000+ product managers receiving monthly updates on:</p>
+          <ul>
+            <li>
+              <img alt="icon-list" src="assets/images/icon-list.svg" />
+              <p>Product discovery and building what matters</p>
+            </li>
+            <li>
+              <img alt="icon-list" src="assets/images/icon-list.svg" />
+              <p>Measuring to ensure updates are a success</p>
+            </li>
+            <li>
+              <img alt="icon-list" src="assets/images/icon-list.svg" />
+              <p>And much more!</p>
+            </li>
+          </ul>
+          <form class="form-content">
+            <div class="row label-row">
+              <label for="email">Email address</label>
+              <span id="errorMessage" class="hide error-message"
+                >Valid email required</span
+              >
+            </div>
+            <input id="email" placeholder="email@company.com" required />
+            <button id="submitButton" type="submit" class="submit-btn">
+              Subscribe to monthly newsletter
+            </button>
+          </form>
+        </div>
+        <div class="mobile-hide">
+          <img
+            alt="illustration"
+            src="assets/images/illustration-sign-up-desktop.svg"
+          />
+        </div>
+        <div class="mobile-show">
+          <img
+            alt="illustration"
+            src="assets/images/illustration-sign-up-mobile.svg"
+          />
+        </div>
+      </div>
+    </main>
+  </body>
+  <script>
+    const submitButton = document.getElementById("submitButton");
+    const email = document.getElementById("email");
+
+    submitButton.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (validateEmail()) {
+        window.location.href = "/success.html";
+      } else {
+        showError();
+      }
+    });
+
+    function validateEmail() {
+      const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+      return emailRegex.test(email.value);
+    }
+
+    function showError() {
+      const errorMessage = document.getElementById("errorMessage");
+      const errorInput = document.getElementById("email");
+
+      errorMessage.classList.remove("hide");
+      errorInput.classList.add("error-input");
+    }
+  </script>
+</html>
